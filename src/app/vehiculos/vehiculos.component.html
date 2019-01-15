@@ -1,0 +1,18 @@
+<div class="form-inline">
+  <ul  class="list-inline">
+    <li  style="padding: 10px" *ngFor="let vehiculo of vehiculos" class="list-inline-item">
+      <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+          <h4 class="card-title text-danger">{{ vehiculo.placa }}</h4>
+          <h5 class="card-text">{{ tipoVehiculo[vehiculo.tipoVehiculo] }}</h5>
+          <p class="card-text">Fecha Ingreso:</p>
+          <p class="card-text" style="font-weight: bold">{{vehiculo.fechaEntrada | date:'dd/MM/yyyy hh:mm a'}}</p>
+
+          <a href="#" class="btn btn-danger">Registrar Salida</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
