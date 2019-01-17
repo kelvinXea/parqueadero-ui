@@ -1,0 +1,85 @@
+<div class="modal-header">
+  <h5 class="modal-title">Salida de vehículo exitosa</h5>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group row">
+      <label style="font-weight: bold" class="col-sm-2 col-form-label">Placa</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          readonly
+          class="form-control-plaintext"
+          value="{{factura.placa | uppercase }}"
+        />
+      </div>
+      <label style="font-weight: bold" class="col-sm-2 col-form-label">Tipo Vehículo</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          readonly
+          class="form-control-plaintext"
+          value="{{ factura.tipoVehiculo | titlecase }}"
+        />
+      </div>
+      <!-- <div [hidden]="factura.tipoVehiculo === 1"> -->
+        <label style="font-weight: bold" [hidden]="factura.tipoVehiculo === tipoVehiculo[1]" class="col-sm-2 col-form-label">Cc</label>
+        <div [hidden]="factura.tipoVehiculo === tipoVehiculo[1]" class="col-sm-10">
+          <input
+            type="text"
+            readonly
+            class="form-control-plaintext"
+            value="{{ factura.cc }}"
+          />
+        </div>
+      <!-- </div> -->
+      <label style="font-weight: bold" class="col-sm-2 col-form-label">Fecha entrada</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          readonly
+          class="form-control-plaintext"
+          value="{{ factura.fechaEntrada | date: 'dd/MM/yyyy hh:mm a' }}"
+        />
+      </div>
+      <label style="font-weight: bold" class="col-sm-2 col-form-label">Fecha Salida</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          readonly
+          class="form-control-plaintext"
+          value="{{ factura.fechaSalida | date: 'dd/MM/yyyy hh:mm a' }}"
+        />
+      </div>
+      <label style="font-weight: bold" class="col-sm-2 col-form-label">Total a Pagar</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          readonly
+          class="form-control-plaintext"
+          value="{{ factura.pagoTotal }}"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    ngbAutofocus
+    type="button"
+    class="btn btn-secondary"
+    data-dismiss="modal"
+    (click)="activeModal.dismiss('Cancel')"
+  >
+    Salir
+  </button>
+</div>

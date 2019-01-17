@@ -1,32 +1,38 @@
+import { AddVehiculoComponent } from './../add-vehiculo/add-vehiculo.component';
 import { TipoVehiculo } from './shared/TipoVehiculo.enum';
-import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader, EventEmitter } from '@angular/core';
 import { Vehiculo } from './shared/vehiculo.model';
 import { VehiculoService } from './shared/vehiculo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vehiculos',
   templateUrl: './vehiculos.component.html',
-  providers: [VehiculoService],
+  providers: [VehiculoService, AddVehiculoComponent],
   styleUrls: ['./vehiculos.component.css']
 })
 export class VehiculosComponent implements OnInit {
-  tipoVehiculo = TipoVehiculo;
+
   vehiculos: Vehiculo[] = [];
+
   constructor(private vehiculoService: VehiculoService) {}
 
   ngOnInit() {
-    this.vehiculoService.getAll<Vehiculo[]>().subscribe(
-      (data: Vehiculo[]) => (this.vehiculos = data),
-      error => () => {
-        console.log('error');
-      },
-      () => {
-        console.log('completo');
-      }
-    );
+    this.onVehicleChange(true);
+  }
 
-    //  this.vehiculoService.getVehiculos().then(
-    //    vehiculos => this.vehiculos = vehiculos
-    //  );
+  onVehicleChange($event) {
+    if ($event === true) {
+      this.vehiculoService.getAll<Vehiculo[]>().subscribe(
+        (data: Vehiculo[]) => (this.vehiculos = data),
+        error => () => {
+          console.log(error);
+        },
+        () => {
+          console.log(this.vehiculos);
+          console.log('completo');
+        }
+      );
+    }
   }
 }

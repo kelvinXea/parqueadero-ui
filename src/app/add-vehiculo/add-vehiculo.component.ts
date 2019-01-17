@@ -1,16 +1,51 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { AddVehiculoModalComponent } from './add-vehiculo.modal.component';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { VehiculoService } from '../vehiculos/shared/vehiculo.service';
+import { Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-vehiculo',
   templateUrl: './add-vehiculo.component.html',
+  providers: [VehiculoService],
   styleUrls: ['./add-vehiculo.component.css']
 })
 export class AddVehiculoComponent implements OnInit {
+  @Output() vehiculoAdded = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal,
+    private vehiculoService: VehiculoService,
+    private toastr: ToastrService
+  ) {}
 
+  open() {
+    this.modalService
+      .open(AddVehiculoModalComponent)
+      .result.then(result => {
+        this.vehiculoService.add(result).subscribe(
+          (data: string) => {
+            console.log(data);
+            this.toastr.success(data);
+            this.vehiculoAdded.emit(true);
+          },
+          err => {
+            console.log(err);
+            switch (err.status) {
+              case 400:
+                this.toastr.warning(err.error);
 
-  ngOnInit() {
+                break;
+
+              default:
+                this.toastr.error(err.error);
+            }
+          }
+        );
+      })
+      .catch(error => {});
   }
 
+  ngOnInit() {}
 }
