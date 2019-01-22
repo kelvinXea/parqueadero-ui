@@ -20,7 +20,8 @@
         name="placa"
         type="text"
         class="form-control"
-        maxlength="6"
+        maxlength="10"
+        minlength="2"
         placeholder="Placa"
         #placa="ngModel"
       />
@@ -36,7 +37,11 @@
         </div>
 
         <div [hidden]="!(placa.errors && placa.errors.maxlength)">
-          La placa debe tener maximo 6 caracteres.
+          La placa debe tener maximo 10 caracteres.
+        </div>
+
+        <div [hidden]="!(placa.errors && placa.errors.minlength)">
+          La placa debe tener minimo 2 caracteres.
         </div>
       </div>
     </div>
@@ -58,10 +63,10 @@
     <div class="form-group">
       <label for="exampleFormControlInput1">Cc</label>
       <input
-       [disabled]="vehiculo.tipoVehiculo === 1"
+        [disabled]="vehiculo.tipoVehiculo === 1"
         required
-        min="0"
-        max="10000"
+        min="49"
+        max="1500"
         appNumberValidator
         [(ngModel)]="vehiculo.cc"
         name="cc"
@@ -73,7 +78,8 @@
 
       <div
         *ngIf="
-          cc.invalid && (cc.dirty || cc.touched || form.submitted)
+          cc.invalid ||
+          ( ((cc.value < 49 || cc.value > 1500) && !cc.disabled) && (cc.dirty || cc.touched || form.submitted))
         "
         class="alert alert-danger"
       >
@@ -81,15 +87,31 @@
           Los cc son requeridos
         </div>
 
-        <div [hidden]="!(cc.errors && cc.errors.numbervalidator && !cc.errors.required)">
+        <div
+          [hidden]="
+            !(cc.errors && cc.errors.numbervalidator && !cc.errors.required)
+          "
+        >
           Los cc tienen que ser validos
+        </div>
+
+        <div [hidden]="cc.value >= 49 || cc.disabled">
+          Los cc tienen que ser mayor o igual a 49
+        </div>
+
+        <div [hidden]="cc.value <= 1500 || cc.disabled">
+          Los cc tienen que ser menor o igual a 1500
         </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-success">Registrar vehiculo</button>
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel')">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="activeModal.dismiss('Cancel')"
+    >
       Cancelar
     </button>
   </div>

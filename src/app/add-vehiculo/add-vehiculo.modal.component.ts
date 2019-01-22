@@ -17,6 +17,7 @@ export class AddVehiculoModalComponent {
   constructor(public activeModal: NgbActiveModal) {
     this.vehiculo = new Vehiculo();
     this.vehiculo.tipoVehiculo = TipoVehiculo.MOTO;
+    this.vehiculo.cc = 49;
   }
 
   getTipoVehiculoValues() {
@@ -26,7 +27,7 @@ export class AddVehiculoModalComponent {
   }
 
   submitForm(form) {
-    if (form.valid) {
+    if (form.valid && (!form.value.cc || form.value.cc >= 49 && form.value.cc <= 1500) ) {
       this.activeModal.close(this.vehiculo);
     }
   }

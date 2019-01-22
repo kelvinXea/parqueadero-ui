@@ -38,6 +38,13 @@ export class AddVehiculoComponent implements OnInit {
 
                 break;
 
+              case 0:
+                this.toastr.error(
+                  'El servidor no se encuentra disponible intente mas tarde'
+                );
+
+                break;
+
               default:
                 this.toastr.error(err.error);
             }
