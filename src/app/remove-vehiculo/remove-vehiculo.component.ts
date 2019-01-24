@@ -44,15 +44,11 @@ export class RemoveVehiculoComponent implements OnInit {
             ).componentInstance.factura = data;
           },
           err => {
-            console.log(err);
-            switch (err.status) {
-              case 400:
-                this.toastr.warning(err.error);
-
-                break;
-
-              default:
-                this.toastr.error(err.error);
+            if (err.status === 400) {
+              this.toastr.warning(err.error);
+              this.vehiculoRemoved.emit(true);
+            } else {
+              this.toastr.error(err.error);
             }
           }
         );

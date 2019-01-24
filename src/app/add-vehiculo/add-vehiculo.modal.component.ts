@@ -26,7 +26,7 @@ export class AddVehiculoModalComponent {
     );
   }
 
-  submitForm(form) {
+  submitForm(form: { valid: any; value: { cc: number; }; }) {
     if (form.valid && (!form.value.cc || form.value.cc >= 49 && form.value.cc <= 1500) ) {
       this.activeModal.close(this.vehiculo);
     }

@@ -1,4 +1,3 @@
-import { TipoVehiculo } from './../vehiculos/shared/TipoVehiculo.enum';
 import { Vehiculo } from './../vehiculos/shared/vehiculo.model';
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';

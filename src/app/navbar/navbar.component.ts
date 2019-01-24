@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
     this.trm = 'Cargando . . .';
     this.trmService.get<Trm>().subscribe(
       (data: Trm) => (this.trmModel = data),
-      error => () => {
+      () => () => {
         this.trm = 'El servicio de TRM no responde';
       },
       () => {

@@ -1,9 +1,7 @@
 import { AddVehiculoComponent } from './../add-vehiculo/add-vehiculo.component';
-import { TipoVehiculo } from './shared/TipoVehiculo.enum';
 import { Component, OnInit, SystemJsNgModuleLoader, EventEmitter } from '@angular/core';
 import { Vehiculo } from './shared/vehiculo.model';
 import { VehiculoService } from './shared/vehiculo.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vehiculos',
@@ -21,7 +19,7 @@ export class VehiculosComponent implements OnInit {
     this.onVehicleChange(true);
   }
 
-  onVehicleChange($event) {
+  onVehicleChange($event: boolean) {
     if ($event === true) {
       this.vehiculoService.getAll<Vehiculo[]>().subscribe(
         (data: Vehiculo[]) => (this.vehiculos = data),

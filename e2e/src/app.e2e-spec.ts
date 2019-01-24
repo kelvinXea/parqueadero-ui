@@ -65,7 +65,7 @@ describe('Salida vehiculo', () => {
     expect(page.getModalFactura()).toBeTruthy();
   });
 
-  it('verificar que sea la misma placa en el modal', () => {
+  it('deberia verificar que sea la misma placa en el modal', () => {
     expect(page.getInputPlacaFromModalFactura().getAttribute('value')).toBe(PLACA);
     page.getButtonCerrarModalFactura().click();
 

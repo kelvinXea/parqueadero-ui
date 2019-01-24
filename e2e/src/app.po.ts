@@ -41,11 +41,11 @@ export class AppPage {
     return element(by.css('[role="alertdialog"]'));
   }
 
-  getH4WithText(text) {
+  getH4WithText(text: string | RegExp) {
     return element(by.cssContainingText('.card-title', text));
   }
 
-  getButtonRegistrarSalidaPorPlaca(placa) {
+  getButtonRegistrarSalidaPorPlaca(placa: string | RegExp) {
    return this.getH4WithText(placa).element(by.xpath('..')).element(by.className('btn-danger'));
   }
 
