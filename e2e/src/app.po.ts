@@ -5,17 +5,6 @@ export class AppPage {
     return browser.get('/');
   }
 
-  esperar(tiempo) {
-    return browser.sleep(tiempo);
- }
-  console(fun) {
-    browser.executeScript(fun);
-  }
-
-  // getTitleText() {
-  //   return element(by.css('app-root h1')).getText();
-  // }
-
   getAddVehiculoButton() {
     return element(by.css('#mybutton'));
   }
@@ -45,7 +34,7 @@ export class AppPage {
   }
 
   getRegistrarVehiculoButton() {
-    return element(by.css('button[type="submit"]'));
+    return this.getModalAddVehiculo().element(by.css('button[type="submit"]'));
   }
 
   getToast() {

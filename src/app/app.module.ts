@@ -16,6 +16,7 @@ import { RemoveVehiculoModalComponent } from './remove-vehiculo/remove-vehiculo.
 import { ShowFacturaModalComponent } from './show-factura/show-factura.modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
     NumberValidatorDirective,
     RemoveVehiculoComponent,
     RemoveVehiculoModalComponent,
-    ShowFacturaModalComponent
+    ShowFacturaModalComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
