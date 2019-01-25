@@ -25,12 +25,10 @@ export class AddVehiculoComponent implements OnInit {
       .result.then(result => {
         this.vehiculoService.add(result).subscribe(
           (data: string) => {
-            console.log(data);
             this.toastr.success(data);
             this.vehiculoAdded.emit(true);
           },
           err => {
-            console.log(err);
             switch (err.status) {
               case 400:
                 this.toastr.warning(err.error);

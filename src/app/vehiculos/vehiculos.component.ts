@@ -1,5 +1,5 @@
 import { AddVehiculoComponent } from './../add-vehiculo/add-vehiculo.component';
-import { Component, OnInit, SystemJsNgModuleLoader, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Vehiculo } from './shared/vehiculo.model';
 import { VehiculoService } from './shared/vehiculo.service';
 
@@ -9,28 +9,36 @@ import { VehiculoService } from './shared/vehiculo.service';
   providers: [VehiculoService, AddVehiculoComponent],
   styleUrls: ['./vehiculos.component.css']
 })
-export class VehiculosComponent implements OnInit {
-
+export class VehiculosComponent implements OnInit, OnDestroy {
   vehiculos: Vehiculo[] = [];
+  intervalHolder: any;
 
-  constructor(private vehiculoService: VehiculoService) {}
+  constructor(
+    private vehiculoService: VehiculoService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.onVehicleChange(true);
+    this.intervalHolder = setInterval(() => {
+      this.onVehicleChange(true);
+      this.changeDetectorRef.markForCheck();
+    }, 1000 * 20);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalHolder);
   }
 
   onVehicleChange($event: boolean) {
     if ($event === true) {
-      this.vehiculoService.getAll<Vehiculo[]>().subscribe(
-        (data: Vehiculo[]) => (this.vehiculos = data),
-        error => () => {
-          console.log(error);
-        },
-        () => {
-          console.log(this.vehiculos);
-          console.log('completo');
-        }
-      );
+      this.vehiculoService
+        .getAll<Vehiculo[]>()
+        .subscribe(
+          (data: Vehiculo[]) => (this.vehiculos = data),
+          error => () => {},
+          () => {}
+        );
     }
   }
 }

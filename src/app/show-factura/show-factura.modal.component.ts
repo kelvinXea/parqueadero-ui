@@ -15,10 +15,5 @@ export class ShowFacturaModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.factura.tipoVehiculo.valueOf());
-    console.log(this.tipoVehiculo.CARRO.valueOf());
-    console.log(
-      this.factura.tipoVehiculo.toString === this.tipoVehiculo[1].toString
-    );
   }
 }

@@ -17,6 +17,7 @@
         ngbAutofocus
         required
         [(ngModel)]="vehiculo.placa"
+        pattern=".*[^ ].*"
         name="placa"
         type="text"
         class="form-control"
@@ -42,6 +43,9 @@
 
         <div [hidden]="!(placa.errors && placa.errors.minlength)">
           La placa debe tener minimo 2 caracteres.
+        </div>
+        <div [hidden]="!(placa.errors && !placa.errors.required && !placa.errors.minlength && !placa.errors.maxlength)">
+          La placa es invalida
         </div>
       </div>
     </div>
@@ -102,6 +106,7 @@
         <div [hidden]="cc.value <= 1500 || cc.disabled">
           Los cc tienen que ser menor o igual a 1500
         </div>
+
       </div>
     </div>
   </div>

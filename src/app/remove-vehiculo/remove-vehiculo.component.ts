@@ -54,7 +54,6 @@ export class RemoveVehiculoComponent implements OnInit {
         );
       })
       .catch(error => {
-        console.log(error);
       });
   }
 }

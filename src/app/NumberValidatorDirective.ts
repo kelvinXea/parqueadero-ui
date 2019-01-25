@@ -23,7 +23,6 @@ export class NumberValidatorDirective implements Validator {
 
    numberValidator(): ValidatorFn {
      return (c: FormControl) => {
-       console.log(c);
        const isValid = /^\d+$/.test(c.value);
        if (isValid) {
         return null;
