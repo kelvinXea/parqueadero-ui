@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Factura } from '../vehiculos/shared/factura.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { TipoVehiculo } from '../vehiculos/shared/TipoVehiculo.enum';
+import { Factura } from 'src/app/Vehiculo/shared/factura.model';
+import { TipoVehiculo } from 'src/app/Vehiculo/shared/TipoVehiculo.enum';
 
 @Component({
   selector: 'app-show-factura',

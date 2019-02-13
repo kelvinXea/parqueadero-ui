@@ -1,5 +1,10 @@
 import { Directive } from '@angular/core';
-import { NG_VALIDATORS, Validator, ValidatorFn, FormControl } from '@angular/forms';
+import {
+  NG_VALIDATORS,
+  Validator,
+  ValidatorFn,
+  FormControl
+} from '@angular/forms';
 @Directive({
   selector: '[appNumberValidator] [ngModel]',
   providers: [
@@ -10,7 +15,6 @@ import { NG_VALIDATORS, Validator, ValidatorFn, FormControl } from '@angular/for
     }
   ]
 })
-
 export class NumberValidatorDirective implements Validator {
   validator: ValidatorFn;
   constructor() {
@@ -19,23 +23,22 @@ export class NumberValidatorDirective implements Validator {
 
   validate(c: FormControl) {
     return this.validator(c);
-   }
-
-   numberValidator(): ValidatorFn {
-     return (c: FormControl) => {
-       const isValid = /^\d+$/.test(c.value);
-       if (isValid) {
-        return null;
-       } else {
-          return {
-            numbervalidator: {
-              valid: false
-            }
-          };
-       }
-     };
-   }
-
-  registerOnValidatorChange?(fn: () => void): void {
   }
+
+  numberValidator(): ValidatorFn {
+    return (c: FormControl) => {
+      const isValid = /^\d+$/.test(c.value);
+      if (isValid) {
+        return null;
+      } else {
+        return {
+          numbervalidator: {
+            valid: false
+          }
+        };
+      }
+    };
+  }
+
+  registerOnValidatorChange?(fn: () => void): void {}
 }

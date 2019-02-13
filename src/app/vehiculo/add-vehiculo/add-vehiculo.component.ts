@@ -1,13 +1,12 @@
 import { AddVehiculoModalComponent } from './add-vehiculo.modal.component';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { VehiculoService } from '../vehiculos/shared/vehiculo.service';
+import { VehiculoService } from '../shared/vehiculo.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-vehiculo',
   templateUrl: './add-vehiculo.component.html',
-  providers: [VehiculoService],
   styleUrls: ['./add-vehiculo.component.css']
 })
 export class AddVehiculoComponent implements OnInit {
@@ -26,7 +25,6 @@ export class AddVehiculoComponent implements OnInit {
         this.vehiculoService.add(result).subscribe(
           (data: string) => {
             this.toastr.success(data);
-            this.vehiculoAdded.emit(true);
           },
           err => {
             switch (err.status) {

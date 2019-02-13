@@ -1,8 +1,8 @@
-import { Vehiculo } from './../vehiculos/shared/vehiculo.model';
-import { Component} from '@angular/core';
+import { Vehiculo } from '../shared/vehiculo.model';
+import { Component } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { TipoVehiculo } from '../vehiculos/shared/TipoVehiculo.enum';
+import { TipoVehiculo } from '../shared/TipoVehiculo.enum';
 
 @Component({
   selector: 'app-add-vehiculo-modal',
@@ -23,13 +23,6 @@ export class AddVehiculoModalComponent {
     return Object.keys(TipoVehiculo).filter(
       type => isNaN(<any>type) && type !== 'values'
     );
-  }
-
-  isPlacaOnlyBlankSpaces(form: { valid: any; value: { placa: string } }) {
-    let placa;
-    placa = form.value.placa;
-    console.log(placa.trim().length);
-    return placa.trim().length === 0;
   }
 
   submitForm(form: { valid: any; value: { cc: number; placa: string } }) {

@@ -44,7 +44,16 @@
         <div [hidden]="!(placa.errors && placa.errors.minlength)">
           La placa debe tener minimo 2 caracteres.
         </div>
-        <div [hidden]="!(placa.errors && !placa.errors.required && !placa.errors.minlength && !placa.errors.maxlength)">
+        <div
+          [hidden]="
+            !(
+              placa.errors &&
+              !placa.errors.required &&
+              !placa.errors.minlength &&
+              !placa.errors.maxlength
+            )
+          "
+        >
           La placa es invalida
         </div>
       </div>
@@ -83,7 +92,9 @@
       <div
         *ngIf="
           cc.invalid ||
-          ( ((cc.value < 49 || cc.value > 1500) && !cc.disabled) && (cc.dirty || cc.touched || form.submitted))
+          ((cc.value < 49 || cc.value > 1500) &&
+            !cc.disabled &&
+            (cc.dirty || cc.touched || form.submitted))
         "
         class="alert alert-danger"
       >
@@ -106,7 +117,6 @@
         <div [hidden]="cc.value <= 1500 || cc.disabled">
           Los cc tienen que ser menor o igual a 1500
         </div>
-
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
-import { TrmService } from './../trm/trmService';
+import { TrmService } from '../shared/trm/trmService';
 import { Component, OnInit } from '@angular/core';
-import { Trm } from '../trm/trm.model';
+import { Trm } from '../shared/trm/trm.model';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.trm = 'Cargando . . .';
-    this.trmService.get<Trm>().subscribe(
+    this.trmService.get().subscribe(
       (data: Trm) => (this.trmModel = data),
       () => () => {
         this.trm = 'El servicio de TRM no responde';
